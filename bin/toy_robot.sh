@@ -1,3 +1,11 @@
 #!/usr/bin/env ruby
 
-puts 'Output: 0,1,NORTH'
+require_relative '../lib/robot'
+require_relative '../lib/command_processor'
+
+robot = Robot.new
+command_processor = CommandProcessor.new(robot)
+
+ARGF.each_line { |line| 
+  command_processor.process(line) 
+}

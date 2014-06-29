@@ -7,5 +7,5 @@ Feature: We can place and move the robot around
         MOVE 
         REPORT 
       """
-    When I successfully run `toy_robot.sh -f /tmp/instructions.txt`
+    When I successfully run `toy_robot.sh instructions.txt`
     And the stdout should contain "Output: 0,1,NORTH"
