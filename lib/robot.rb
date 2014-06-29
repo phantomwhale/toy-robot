@@ -2,9 +2,9 @@ class Robot
   attr_reader :x, :y, :facing
 
   def place(x, y, facing)
-    @x = x
-    @y = y
-    @facing = facing
+    @x = x.to_i
+    @y = y.to_i
+    @facing = facing.to_s
   end
 
   def move
