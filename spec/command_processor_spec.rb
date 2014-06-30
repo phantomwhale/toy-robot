@@ -52,7 +52,7 @@ describe CommandProcessor do
       end
 
       it 'reports the robots location via stdout' do
-        expect(command_processor).to receive(:puts).with("Output: 1,2,EAST")
+        expect(CommandFactory).to receive(:puts).with("Output: 1,2,EAST")
         command_processor.process(command)
       end
     end
@@ -76,7 +76,7 @@ describe CommandProcessor do
       end
 
       it 'ignores report commands' do
-        expect(command_processor).to_not receive(:puts)
+        expect(CommandFactory).to_not receive(:puts)
         command_processor.process('REPORT')
       end
     end
