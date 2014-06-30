@@ -5,21 +5,20 @@ class Robot
   attr_reader :x, :y, :facing
 
   def place(x, y, facing)
-    @x = x.to_i
-    @y = y.to_i
+    change_position(x.to_i, y.to_i)
     @facing = facing.to_s
   end
 
   def move
     case @facing 
     when 'NORTH'
-      @y = [@y + 1, TABLE_SIZE-1].min
+      change_position(@x, @y+1)
     when 'SOUTH'
-      @y = [@y - 1, 0].max
+      change_position(@x, @y-1)
     when 'EAST'
-      @x = [@x + 1, TABLE_SIZE-1].min
+      change_position(@x+1, @y)
     when 'WEST'
-      @x = [@x - 1, 0].max
+      change_position(@x-1, @y)
     end
   end
 
@@ -40,6 +39,17 @@ class Robot
   def turn(adjustment)
     index = FACINGS.index(@facing)
     @facing = FACINGS.rotate(adjustment)[index]
+  end
+
+  def change_position(x, y) 
+    if on_table(x, y)  
+      @x = x.to_i
+      @y = y.to_i
+    end
+  end
+
+  def on_table(x, y) 
+    0 <= x && x <= 4 && 0 <= y && y <= 4
   end
 end
 

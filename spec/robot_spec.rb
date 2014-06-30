@@ -28,23 +28,33 @@ describe Robot do
     it 'marks the robot as placed' do
       expect(robot).to be_placed
     end
+  end
 
-    context 'when using paramters with explicit conversions to the required types' do
-      before do
-        robot.place('1', '2', :NORTH)
-      end
+  context 'when using paramters with explicit conversions to the required types' do
+    before do
+      robot.place('1', '2', :NORTH)
+    end
 
-      it 'sets the x coordinate' do
-        expect(robot.x).to be 1
-      end
+    it 'sets the x coordinate' do
+      expect(robot.x).to be 1
+    end
 
-      it 'sets the y coordinate' do
-        expect(robot.y).to be 2
-      end
+    it 'sets the y coordinate' do
+      expect(robot.y).to be 2
+    end
 
-      it 'sets the facing' do
-        expect(robot.facing).to eq 'NORTH'
-      end
+    it 'sets the facing' do
+      expect(robot.facing).to eq 'NORTH'
+    end
+  end
+
+  context 'when trying to place the robot on a non-legal square' do
+    before do 
+      robot.place(8, 2, 'WEST')
+    end
+
+    it 'does not place the robot' do
+      expect(robot).to_not be_placed
     end
   end
 
