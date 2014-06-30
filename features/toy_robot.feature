@@ -7,7 +7,7 @@ Feature: We can place and move the robot around
         MOVE 
         REPORT 
       """
-    When I successfully run `toy_robot.sh instructions.txt`
+    When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should contain "Output: 0,1,NORTH"
 
   Scenario: Simple place, turn and report
@@ -17,7 +17,7 @@ Feature: We can place and move the robot around
         LEFT 
         REPORT 
       """
-    When I successfully run `toy_robot.sh instructions.txt`
+    When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should contain "Output: 0,0,WEST"
 
   Scenario: Longer turn and move, then report
@@ -30,7 +30,7 @@ Feature: We can place and move the robot around
         MOVE
         REPORT
       """
-    When I successfully run `toy_robot.sh instructions.txt`
+    When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should contain "Output: 3,3,NORTH"
 
   Scenario: Unplaced robots do nothing
@@ -42,5 +42,5 @@ Feature: We can place and move the robot around
         MOVE
         REPORT
       """
-    When I successfully run `toy_robot.sh instructions.txt`
+    When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should not contain "Output:"
