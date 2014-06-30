@@ -1,5 +1,7 @@
 class Robot
   TABLE_SIZE = 5
+  FACINGS = %w(NORTH EAST SOUTH WEST)
+
   attr_reader :x, :y, :facing
 
   def place(x, y, facing)
@@ -22,32 +24,22 @@ class Robot
   end
 
   def left
-    case @facing 
-    when 'NORTH'
-      @facing = 'WEST'
-    when 'SOUTH'
-      @facing = 'EAST'
-    when 'EAST'
-      @facing = 'NORTH'
-    when 'WEST'
-      @facing = 'SOUTH'
-    end
+    turn(-1)
   end
 
   def right
-    case @facing 
-    when 'NORTH'
-      @facing = 'EAST'
-    when 'SOUTH'
-      @facing = 'WEST'
-    when 'EAST'
-      @facing = 'SOUTH'
-    when 'WEST'
-      @facing = 'NORTH'
-    end
+    turn(1)
   end
 
   def placed?
     !(@x.nil? && @y.nil?)
   end
+
+  private
+
+  def turn(adjustment)
+    index = FACINGS.index(@facing)
+    @facing = FACINGS.rotate(adjustment)[index]
+  end
 end
+
