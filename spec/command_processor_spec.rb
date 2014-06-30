@@ -3,7 +3,8 @@ require 'command_processor'
 
 describe CommandProcessor do
   let(:robot) { double("robot", placed?: true) }
-  subject(:command_processor) { CommandProcessor.new(robot) }
+  let(:io) { double("io") }
+  subject(:command_processor) { CommandProcessor.new(robot, io) }
   
   describe '#process' do
     context 'when processing a PLACE command' do
@@ -52,7 +53,7 @@ describe CommandProcessor do
       end
 
       it 'reports the robots location via stdout' do
-        expect(CommandFactory).to receive(:puts).with("Output: 1,2,EAST")
+        expect(io).to receive(:puts).with("Output: 1,2,EAST")
         command_processor.process(command)
       end
     end
@@ -76,7 +77,7 @@ describe CommandProcessor do
       end
 
       it 'ignores report commands' do
-        expect(CommandFactory).to_not receive(:puts)
+        expect(io).to_not receive(:puts)
         command_processor.process('REPORT')
       end
     end
