@@ -14,5 +14,29 @@ describe CommandProcessor do
         command_processor.process(command)
       end
     end
+
+    context 'when processing a MOVE command' do
+      let(:command) { 'MOVE' }
+
+      it 'moves the robot' do
+        expect(robot).to receive(:move)
+        command_processor.process(command)
+      end
+    end
+
+    context 'when processing a REPORT command' do
+      let(:command) { 'REPORT' }
+
+      before do
+        allow(robot).to receive(:x).and_return(1)
+        allow(robot).to receive(:y).and_return(2)
+        allow(robot).to receive(:facing).and_return('EAST')
+      end
+
+      it 'reports the robots location via stdout' do
+        expect(command_processor).to receive(:puts).with("Output: 1,2,EAST")
+        command_processor.process(command)
+      end
+    end
   end
 end

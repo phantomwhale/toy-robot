@@ -7,5 +7,5 @@ robot = Robot.new
 command_processor = CommandProcessor.new(robot)
 
 ARGF.each_line { |line| 
-  command_processor.process(line) 
+  command_processor.process(line.strip) 
 }
