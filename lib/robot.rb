@@ -45,4 +45,8 @@ class Robot
       @facing = 'NORTH'
     end
   end
+
+  def placed?
+    !(@x.nil? && @y.nil?)
+  end
 end

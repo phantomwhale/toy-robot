@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'command_processor'
 
 describe CommandProcessor do
-  let(:robot) { double("robot") }
+  let(:robot) { double("robot", placed?: true) }
   subject(:command_processor) { CommandProcessor.new(robot) }
   
   describe '#process' do
@@ -54,6 +54,30 @@ describe CommandProcessor do
       it 'reports the robots location via stdout' do
         expect(command_processor).to receive(:puts).with("Output: 1,2,EAST")
         command_processor.process(command)
+      end
+    end
+
+    context 'when the robot has not been placed' do
+      let(:robot) { double("robot", placed?: false) }
+
+      it 'ignores move commands' do
+        expect(robot).to_not receive(:move)
+        command_processor.process('MOVE')
+      end
+
+      it 'ignores left commands' do
+        expect(robot).to_not receive(:left)
+        command_processor.process('LEFT')
+      end
+
+      it 'ignores right commands' do
+        expect(robot).to_not receive(:right)
+        command_processor.process('RIGHT')
+      end
+
+      it 'ignores report commands' do
+        expect(command_processor).to_not receive(:puts)
+        command_processor.process('REPORT')
       end
     end
   end

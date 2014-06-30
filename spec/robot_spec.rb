@@ -4,6 +4,10 @@ require 'robot'
 describe Robot do
   let(:robot) { Robot.new }
 
+  it 'starts not placed' do
+    expect(robot).to_not be_placed
+  end
+
   describe 'placing robot on the table' do
     before do 
       robot.place(1, 2, 'NORTH') 
@@ -19,6 +23,10 @@ describe Robot do
 
     it 'sets the facing' do
       expect(robot.facing).to eq 'NORTH'
+    end
+
+    it 'marks the robot as placed' do
+      expect(robot).to be_placed
     end
 
     context 'when using paramters with explicit conversions to the required types' do

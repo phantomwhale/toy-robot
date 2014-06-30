@@ -32,3 +32,15 @@ Feature: We can place and move the robot around
       """
     When I successfully run `toy_robot.sh instructions.txt`
     And the stdout should contain "Output: 3,3,NORTH"
+
+  Scenario: Unplaced robots do nothing
+    Given a file named "instructions.txt" with:
+      """
+        MOVE
+        MOVE
+        LEFT
+        MOVE
+        REPORT
+      """
+    When I successfully run `toy_robot.sh instructions.txt`
+    And the stdout should not contain "Output:"
