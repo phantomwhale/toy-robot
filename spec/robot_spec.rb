@@ -52,7 +52,7 @@ describe Robot do
     let(:facing) { 'NORTH' }
 
     before do
-      robot.place(1, 2, facing)
+      robot.place(2, 0, facing)
     end
 
     describe '#move' do
@@ -65,6 +65,14 @@ describe Robot do
 
         it 'moves the robot one step in the direction of facing' do
           expect { robot.move }.to change { robot.x }.by(1)
+        end
+      end
+
+      context 'when the robot is facing the edge of the table' do
+        let(:facing) { 'SOUTH' }
+        
+        it 'does not move the robot' do
+          expect { robot.move }.to_not change { robot.y }
         end
       end
     end

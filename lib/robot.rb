@@ -1,4 +1,5 @@
 class Robot
+  TABLE_SIZE = 5
   attr_reader :x, :y, :facing
 
   def place(x, y, facing)
@@ -10,13 +11,13 @@ class Robot
   def move
     case @facing 
     when 'NORTH'
-      @y = @y + 1
+      @y = [@y + 1, TABLE_SIZE-1].min
     when 'SOUTH'
-      @y = @y - 1
+      @y = [@y - 1, 0].max
     when 'EAST'
-      @x = @x + 1
+      @x = [@x + 1, TABLE_SIZE-1].min
     when 'WEST'
-      @x = @x - 1
+      @x = [@x - 1, 0].max
     end
   end
 

@@ -44,3 +44,13 @@ Feature: We can place and move the robot around
       """
     When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should not contain "Output:"
+
+  Scenario: Robots do not walk off the table (5x5)
+    Given a file named "instructions.txt" with:
+    """
+      PLACE 2,4,NORTH
+      MOVE
+      REPORT
+    """
+    When I successfully run `toy_robot.rb instructions.txt`
+    And the stdout should contain "Output: 2,4,NORTH"
