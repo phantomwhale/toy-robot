@@ -54,3 +54,14 @@ Feature: We can place and move the robot around
     """
     When I successfully run `toy_robot.rb instructions.txt`
     And the stdout should contain "Output: 2,4,NORTH"
+
+  Scenario: Robots can be placed multiple times
+    Given a file named "instructions.txt" with:
+    """
+      PLACE 2,2,NORTH
+      MOVE
+      PLACE 1,1,EAST
+      REPORT
+    """
+    When I successfully run `toy_robot.rb instructions.txt`
+    And the stdout should contain "Output: 1,1,EAST"
