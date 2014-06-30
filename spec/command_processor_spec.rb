@@ -24,6 +24,24 @@ describe CommandProcessor do
       end
     end
 
+    context 'when processing a LEFT command' do
+      let(:command) { 'LEFT' }
+
+      it 'turns the robot to the left' do
+        expect(robot).to receive(:left)
+        command_processor.process(command)
+      end
+    end
+
+    context 'when processing a RIGHT command' do
+      let(:command) { 'RIGHT' }
+
+      it 'turns the robot to the left' do
+        expect(robot).to receive(:right)
+        command_processor.process(command)
+      end
+    end
+
     context 'when processing a REPORT command' do
       let(:command) { 'REPORT' }
 

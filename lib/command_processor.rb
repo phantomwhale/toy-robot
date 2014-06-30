@@ -9,6 +9,10 @@ class CommandProcessor
       @robot.place(*params.split(","))
     elsif command == 'MOVE'
       @robot.move
+    elsif command == 'LEFT'
+      @robot.left
+    elsif command == 'RIGHT'
+      @robot.right
     elsif command == 'REPORT'
       puts "Output: #{@robot.x},#{@robot.y},#{@robot.facing}"
     end
