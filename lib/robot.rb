@@ -1,8 +1,11 @@
 class Robot
-  TABLE_SIZE = 5
   FACINGS = %w(NORTH EAST SOUTH WEST)
 
   attr_reader :x, :y, :facing
+
+  def initialize(table = Table.new)
+    @table = table
+  end
 
   def place(x, y, facing)
     change_position(x.to_i, y.to_i)
@@ -48,14 +51,30 @@ class Robot
   end
 
   def change_position(x, y) 
-    if on_table(x, y)  
+    if @table.within_edges?(x, y)  
       @x = x.to_i
       @y = y.to_i
     end
   end
-
-  def on_table(x, y) 
-    0 <= x && x <= 4 && 0 <= y && y <= 4
-  end
 end
 
+class Table
+  def initialize(width = 5, height = 5)
+    @width = width
+    @height = height
+  end
+
+  def within_edges?(x, y)
+     within_width?(x) && within_height?(y)
+  end
+
+  private
+
+  def within_width?(x)
+    0 <= x && x <= @width-1
+  end
+
+  def within_height?(y)
+    0 <= y && y <= @height-1
+  end
+end
