@@ -16,16 +16,7 @@ class Robot
 
   def move
     return unless placed?
-    case @facing 
-    when 'NORTH'
-      change_position(Position.new(@position.x, @position.y+1))
-    when 'SOUTH'
-      change_position(Position.new(@position.x, @position.y-1))
-    when 'EAST'
-      change_position(Position.new(@position.x+1, @position.y))
-    when 'WEST'
-      change_position(Position.new(@position.x-1, @position.y))
-    end
+    change_position(@position.send(@facing.downcase))
   end
 
   def left
@@ -37,7 +28,7 @@ class Robot
   end
 
   def location 
-    "#{@position.x},#{@position.y},#{@facing}" if placed?
+    "#{@position},#{@facing}" if placed?
   end
 
   def placed?
@@ -59,4 +50,24 @@ class Robot
   end
 end
 
-Position = Struct.new(:x, :y)
+Position = Struct.new(:x, :y) do
+  def north
+    Position.new(x, y+1)
+  end
+
+  def south
+    Position.new(x, y-1)
+  end
+
+  def east
+    Position.new(x+1, y)
+  end
+
+  def west
+    Position.new(x-1, y)
+  end
+
+  def to_s
+    "#{x},#{y}"
+  end
+end
