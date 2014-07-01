@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'robot'
 
 describe Robot do
-  let(:robot) { Robot.new }
+  let(:table) { double("table", within_edges?: true) }
+  let(:robot) { Robot.new(table) }
 
   it 'starts not placed' do
     expect(robot).to_not be_placed
@@ -51,6 +52,7 @@ describe Robot do
 
     context 'when trying to place the robot on a non-legal square' do
       before do 
+        allow(table).to receive(:within_edges?).and_return(false)
         robot.place(8, 2, 'WEST')
       end
 
@@ -80,8 +82,10 @@ describe Robot do
         end
       end
 
-      context 'when the robot is facing the edge of the table' do
-        let(:facing) { 'SOUTH' }
+      context 'when the robot attempt to move off the edge of the table' do
+        before do
+          allow(table).to receive(:within_edges?).and_return(false)
+        end
 
         it 'does not move the robot' do
           expect { robot.move }.to_not change { robot.y }
