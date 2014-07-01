@@ -8,7 +8,7 @@ Feature: We can place and move the robot around
         REPORT 
       """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should contain "0,1,NORTH"
+    Then the stdout should contain "0,1,NORTH"
 
   Scenario: Simple place, turn and report
     Given a file named "instructions.txt" with:
@@ -18,7 +18,7 @@ Feature: We can place and move the robot around
         REPORT 
       """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should contain "0,0,WEST"
+    Then the stdout should contain "0,0,WEST"
 
   Scenario: Longer turn and move, then report
     Given a file named "instructions.txt" with:
@@ -31,7 +31,7 @@ Feature: We can place and move the robot around
         REPORT
       """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should contain "3,3,NORTH"
+    Then the stdout should contain "3,3,NORTH"
 
   Scenario: Unplaced robots do nothing
     Given a file named "instructions.txt" with:
@@ -43,7 +43,7 @@ Feature: We can place and move the robot around
         REPORT
       """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should not contain anything
+    Then the stdout should not contain anything
 
   Scenario: Robots do not walk off the table (5x5)
     Given a file named "instructions.txt" with:
@@ -53,7 +53,7 @@ Feature: We can place and move the robot around
       REPORT
     """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should contain "2,4,NORTH"
+    Then the stdout should contain "2,4,NORTH"
 
   Scenario: Robots can be placed multiple times
     Given a file named "instructions.txt" with:
@@ -64,7 +64,7 @@ Feature: We can place and move the robot around
       REPORT
     """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should contain "1,1,EAST"
+    Then the stdout should contain "1,1,EAST"
 
   Scenario: Illegal place commands are ignored
     Given a file named "instructions.txt" with:
@@ -73,5 +73,5 @@ Feature: We can place and move the robot around
       REPORT
     """
     When I successfully run `toy_robot.rb instructions.txt`
-    And the stdout should not contain anything
+    Then the stdout should not contain anything
 
