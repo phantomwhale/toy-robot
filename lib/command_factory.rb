@@ -5,22 +5,23 @@ require_relative 'turn_right_command'
 require_relative 'report_command'
 
 class CommandFactory
-  def initialize(io)
+  def initialize(robot, io = STDOUT)
+    @robot = robot
     @io = io
   end
 
-  def create(command_text)
-    if command_text =~ /^PLACE /
-      params = command_text.split.last
-      PlaceCommand.new(*params.split(","))
-    elsif command_text == 'MOVE'
-      MoveCommand.new
-    elsif command_text == 'LEFT'
-      TurnLeftCommand.new
-    elsif command_text == 'RIGHT'
-      TurnRightCommand.new
-    elsif command_text == 'REPORT'
-      ReportCommand.new(@io)
+  def create(instruction)
+    if instruction =~ /^PLACE /
+      params = instruction.split.last
+      PlaceCommand.new(@robot, *params.split(","))
+    elsif instruction == 'MOVE'
+      MoveCommand.new(@robot)
+    elsif instruction == 'LEFT'
+      TurnLeftCommand.new(@robot)
+    elsif instruction == 'RIGHT'
+      TurnRightCommand.new(@robot)
+    elsif instruction == 'REPORT'
+      ReportCommand.new(@robot, @io)
     end
   end
 end

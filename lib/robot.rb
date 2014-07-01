@@ -10,6 +10,7 @@ class Robot
   end
 
   def move
+    return unless placed?
     case @facing 
     when 'NORTH'
       change_position(@x, @y+1)
@@ -30,6 +31,10 @@ class Robot
     turn(1)
   end
 
+  def position 
+    "#{@x},#{@y},#{@facing}" if placed?
+  end
+
   def placed?
     !(@x.nil? && @y.nil?)
   end
@@ -37,6 +42,7 @@ class Robot
   private
 
   def turn(adjustment)
+    return unless placed?
     index = FACINGS.index(@facing)
     @facing = FACINGS.rotate(adjustment)[index]
   end

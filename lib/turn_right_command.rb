@@ -1,6 +1,10 @@
 class TurnRightCommand
-  def execute(robot)
-    robot.right if robot.placed?
+  def initialize(robot)
+    @robot = robot
+  end
+
+  def execute
+    @robot.right
   end
 end
 

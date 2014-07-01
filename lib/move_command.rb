@@ -1,6 +1,10 @@
 class MoveCommand
-  def execute(robot)
-    robot.move if robot.placed?
+  def initialize(robot)
+    @robot = robot
+  end
+
+  def execute
+    @robot.move
   end
 end
 

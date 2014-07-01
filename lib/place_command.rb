@@ -1,10 +1,11 @@
 class PlaceCommand
-  def initialize(*args)
+  def initialize(robot, *args)
+    @robot = robot
     @args = args
   end
 
-  def execute(robot)
-    robot.place(*@args)
+  def execute
+    @robot.place(*@args)
   end
 end
 

@@ -1,9 +1,11 @@
 class ReportCommand
-  def initialize(io)
+  def initialize(robot, io)
+    @robot = robot
     @io = io
   end
 
-  def execute(robot)
-    @io.puts "Output: #{robot.x},#{robot.y},#{robot.facing}" if robot.placed?
+  def execute
+    position = @robot.position
+    @io.puts position unless position.nil?
   end
 end
