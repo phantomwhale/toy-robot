@@ -5,7 +5,7 @@ class ReportCommand
   end
 
   def execute
-    position = @robot.position
-    @io.puts position unless position.nil?
+    location = @robot.location
+    @io.puts location unless location.nil?
   end
 end

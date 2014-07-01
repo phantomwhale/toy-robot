@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'report_command'
 
 describe ReportCommand do
-  let(:robot) { double("robot", position: '1,2,SOUTH') }
+  let(:robot) { double("robot", location: '1,2,SOUTH') }
   let(:io) { double("io") }
 
   subject(:command) { ReportCommand.new(robot, io) }
@@ -13,9 +13,9 @@ describe ReportCommand do
       command.execute
     end
 
-    context 'when the robot reports an empty position' do
+    context 'when the robot reports an empty location' do
       before do
-        allow(robot).to receive(:position).and_return(nil)
+        allow(robot).to receive(:location).and_return(nil)
       end
 
       it 'outputs nothing' do

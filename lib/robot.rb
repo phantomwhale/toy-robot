@@ -3,14 +3,14 @@ require_relative 'table'
 class Robot
   FACINGS = %w(NORTH EAST SOUTH WEST)
 
-  attr_reader :x, :y, :facing
+  attr_reader :position, :facing
 
   def initialize(table)
     @table = table
   end
 
   def place(x, y, facing)
-    change_position(x.to_i, y.to_i)
+    change_position(Position.new(x.to_i, y.to_i))
     @facing = facing.to_s
   end
 
@@ -18,13 +18,13 @@ class Robot
     return unless placed?
     case @facing 
     when 'NORTH'
-      change_position(@x, @y+1)
+      change_position(Position.new(@position.x, @position.y+1))
     when 'SOUTH'
-      change_position(@x, @y-1)
+      change_position(Position.new(@position.x, @position.y-1))
     when 'EAST'
-      change_position(@x+1, @y)
+      change_position(Position.new(@position.x+1, @position.y))
     when 'WEST'
-      change_position(@x-1, @y)
+      change_position(Position.new(@position.x-1, @position.y))
     end
   end
 
@@ -36,12 +36,12 @@ class Robot
     turn(1)
   end
 
-  def position 
-    "#{@x},#{@y},#{@facing}" if placed?
+  def location 
+    "#{@position.x},#{@position.y},#{@facing}" if placed?
   end
 
   def placed?
-    !(@x.nil? && @y.nil?)
+    !(@position.nil?)
   end
 
   private
@@ -52,11 +52,11 @@ class Robot
     @facing = FACINGS.rotate(adjustment)[index]
   end
 
-  def change_position(x, y) 
-    if @table.within_edges?(x, y)  
-      @x = x.to_i
-      @y = y.to_i
+  def change_position(position) 
+    if @table.within_edges?(position.x, position.y)  
+      @position = position
     end
   end
 end
 
+Position = Struct.new(:x, :y)

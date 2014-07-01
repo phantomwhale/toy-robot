@@ -15,12 +15,8 @@ describe Robot do
         robot.place(1, 2, 'NORTH') 
       end
 
-      it 'sets the x coordinate' do
-        expect(robot.x).to be 1
-      end
-
-      it 'sets the y coordinate' do
-        expect(robot.y).to be 2
+      it 'sets the position' do
+        expect(robot.position).to eq Position.new(1,2)
       end
 
       it 'sets the facing' do
@@ -37,12 +33,8 @@ describe Robot do
         robot.place('1', '2', :NORTH)
       end
 
-      it 'sets the x coordinate' do
-        expect(robot.x).to be 1
-      end
-
-      it 'sets the y coordinate' do
-        expect(robot.y).to be 2
+      it 'sets the position' do
+        expect(robot.position).to eq Position.new(1,2)
       end
 
       it 'sets the facing' do
@@ -71,14 +63,14 @@ describe Robot do
 
     describe '#move' do
       it 'moves the robot one step forward' do
-        expect { robot.move }.to change { robot.y }.by(1)
+        expect { robot.move }.to change { robot.position.y }.by(1)
       end
 
       context 'when the robot has a different facing' do
         let(:facing) { 'EAST' }
 
         it 'moves the robot one step in the direction of facing' do
-          expect { robot.move }.to change { robot.x }.by(1)
+          expect { robot.move }.to change { robot.position.x }.by(1)
         end
       end
 
@@ -88,7 +80,7 @@ describe Robot do
         end
 
         it 'does not move the robot' do
-          expect { robot.move }.to_not change { robot.y }
+          expect { robot.move }.to_not change { robot.position }
         end
       end
     end
@@ -107,9 +99,9 @@ describe Robot do
       end
     end
 
-    describe '#position' do
-      it 'reports the robot location and facing' do
-        expect(robot.position).to eq "2,0,NORTH"
+    describe '#location' do
+      it 'reports the robot position and facing' do
+        expect(robot.location).to eq "2,0,NORTH"
       end
     end
   end
@@ -117,7 +109,7 @@ describe Robot do
   context 'when robot has not been placed' do
     describe '#move' do
       it 'does not move the robot' do
-        expect { robot.move }.to_not change { [robot.x, robot.y] }
+        expect { robot.move }.to_not change { robot.position }
       end
     end
 
