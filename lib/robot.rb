@@ -1,4 +1,5 @@
 require_relative 'table'
+require_relative 'position'
 
 class Robot
   FACINGS = %w(NORTH EAST SOUTH WEST)
@@ -9,8 +10,8 @@ class Robot
     @table = table
   end
 
-  def place(x, y, facing)
-    change_position(Position.new(x.to_i, y.to_i))
+  def place(position, facing)
+    change_position(position)
     @facing = facing.to_s
   end
 
@@ -44,30 +45,8 @@ class Robot
   end
 
   def change_position(position) 
-    if @table.within_edges?(position.x, position.y)  
+    if @table.within_edges?(position)  
       @position = position
     end
-  end
-end
-
-Position = Struct.new(:x, :y) do
-  def north
-    Position.new(x, y+1)
-  end
-
-  def south
-    Position.new(x, y-1)
-  end
-
-  def east
-    Position.new(x+1, y)
-  end
-
-  def west
-    Position.new(x-1, y)
-  end
-
-  def to_s
-    "#{x},#{y}"
   end
 end

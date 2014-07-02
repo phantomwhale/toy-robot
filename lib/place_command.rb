@@ -1,11 +1,14 @@
+require_relative 'position'
+
 class PlaceCommand
-  def initialize(robot, *args)
+  def initialize(robot, x, y, facing)
     @robot = robot
-    @args = args
+    @position = Position.new(x, y)
+    @facing = facing
   end
 
   def execute
-    @robot.place(*@args)
+    @robot.place(@position, @facing)
   end
 end
 

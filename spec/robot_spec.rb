@@ -12,7 +12,7 @@ describe Robot do
   describe '#place' do
     context 'when placing the robot on a valid location' do
       before do 
-        robot.place(1, 2, 'NORTH') 
+        robot.place(Position.new(1, 2), 'NORTH') 
       end
 
       it 'sets the position' do
@@ -28,24 +28,10 @@ describe Robot do
       end
     end
 
-    context 'when using parameters which need explicit conversions' do
-      before do
-        robot.place('1', '2', :NORTH)
-      end
-
-      it 'sets the position' do
-        expect(robot.position).to eq Position.new(1,2)
-      end
-
-      it 'sets the facing' do
-        expect(robot.facing).to eq 'NORTH'
-      end
-    end
-
     context 'when trying to place the robot on a non-legal square' do
       before do 
         allow(table).to receive(:within_edges?).and_return(false)
-        robot.place(8, 2, 'WEST')
+        robot.place(Position.new(8, 2), 'WEST')
       end
 
       it 'does not place the robot' do
@@ -58,7 +44,7 @@ describe Robot do
     let(:facing) { 'NORTH' }
 
     before do
-      robot.place(2, 0, facing)
+      robot.place(Position.new(2, 0), facing)
     end
 
     describe '#move' do

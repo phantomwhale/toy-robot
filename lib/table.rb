@@ -4,8 +4,8 @@ class Table
     @height = height
   end
 
-  def within_edges?(x, y)
-     within_width?(x) && within_height?(y)
+  def within_edges?(position)
+    within_width?(position.x) && within_height?(position.y)
   end
 
   private
