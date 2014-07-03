@@ -11,13 +11,12 @@ class Robot
   end
 
   def place(position, facing)
-    change_position(position)
-    @facing = facing.to_s
+    move_to(position)
+    @facing = facing
   end
 
-  def move
-    return unless placed?
-    change_position(@position.send(@facing.downcase))
+  def step_forward
+    move_to(@position.send(@facing.downcase)) if placed?
   end
 
   def left
@@ -37,14 +36,13 @@ class Robot
   end
 
   def clockwise_turn(steps)
-    return unless placed?
     index = FACINGS.index(@facing)
-    @facing = FACINGS.rotate(steps)[index]
+    @facing = FACINGS.rotate(steps)[index] if placed?
   end
 
   private
 
-  def change_position(position) 
+  def move_to(position) 
     if @table.within_edges?(position)  
       @position = position
     end

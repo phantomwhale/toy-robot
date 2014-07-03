@@ -47,16 +47,16 @@ describe Robot do
       robot.place(Position.new(2, 0), facing)
     end
 
-    describe '#move' do
+    describe '#step_forward' do
       it 'moves the robot one step forward' do
-        expect { robot.move }.to change { robot.position.y }.by(1)
+        expect { robot.step_forward }.to change { robot.position.y }.by(1)
       end
 
       context 'when the robot has a different facing' do
         let(:facing) { 'EAST' }
 
         it 'moves the robot one step in the direction of facing' do
-          expect { robot.move }.to change { robot.position.x }.by(1)
+          expect { robot.step_forward }.to change { robot.position.x }.by(1)
         end
       end
 
@@ -66,7 +66,7 @@ describe Robot do
         end
 
         it 'does not move the robot' do
-          expect { robot.move }.to_not change { robot.position }
+          expect { robot.step_forward }.to_not change { robot.position }
         end
       end
     end
@@ -105,9 +105,9 @@ describe Robot do
   end
 
   context 'when robot has not been placed' do
-    describe '#move' do
+    describe '#step_forward' do
       it 'does not move the robot' do
-        expect { robot.move }.to_not change { robot.position }
+        expect { robot.step_forward }.to_not change { robot.position }
       end
     end
 

@@ -7,7 +7,7 @@ describe MoveCommand do
 
   describe '#execute' do
     it 'tells the robot to move' do
-      expect(robot).to receive(:move)
+      expect(robot).to receive(:step_forward)
       command.execute
     end
   end

@@ -4,7 +4,7 @@ class MoveCommand
   end
 
   def execute
-    @robot.move
+    @robot.step_forward
   end
 end
 
