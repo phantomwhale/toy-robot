@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'instruction_processor'
 
 describe InstructionProcessor do

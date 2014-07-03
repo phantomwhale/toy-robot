@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'turn_command'
 
 describe TurnCommand do

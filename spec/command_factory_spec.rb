@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'command_factory'
 
 describe CommandFactory do
