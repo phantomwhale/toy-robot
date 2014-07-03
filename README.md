@@ -32,3 +32,7 @@ To run the feature specs, ensuring the robot behaves as expected, run:
 The run the unit tests, ensuring each part of the application is behaving as expected, run:
 
     bundle exec rake 
+
+You can check the code coverage afterwards by opening the generated report
+  
+    open coverage/index.html
