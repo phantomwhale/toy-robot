@@ -85,6 +85,18 @@ describe Robot do
       end
     end
 
+    describe '#clockwise_turn' do
+      it 'turns the robot clockwise by the number of steps provided' do
+        robot.clockwise_turn(1)
+        expect(robot.facing).to eq 'EAST'
+      end
+
+      it 'turns the robot counter-clockwise when a negative value is provided' do
+        robot.clockwise_turn(-1)
+        expect(robot.facing).to eq 'WEST'
+      end
+    end
+
     describe '#location' do
       it 'reports the robot position and facing' do
         expect(robot.location).to eq "2,0,NORTH"

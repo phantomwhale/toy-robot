@@ -29,7 +29,7 @@ describe CommandFactory do
       let(:instruction) { 'LEFT' }
 
       it 'creates a turn left command' do
-        expect(TurnLeftCommand).to receive(:new).with(robot)
+        expect(TurnCommand).to receive(:new).with(robot, TurnCommand::LEFT)
         command_factory.create(instruction)
       end
     end
@@ -38,7 +38,7 @@ describe CommandFactory do
       let(:instruction) { 'RIGHT' }
 
       it 'creates a turn right command' do
-        expect(TurnRightCommand).to receive(:new).with(robot)
+        expect(TurnCommand).to receive(:new).with(robot, TurnCommand::RIGHT)
         command_factory.create(instruction)
       end
     end

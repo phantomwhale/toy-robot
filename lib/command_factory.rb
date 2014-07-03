@@ -1,7 +1,6 @@
 require_relative 'place_command'
 require_relative 'move_command'
-require_relative 'turn_left_command'
-require_relative 'turn_right_command'
+require_relative 'turn_command'
 require_relative 'report_command'
 
 class CommandFactory
@@ -17,9 +16,9 @@ class CommandFactory
     elsif instruction == 'MOVE'
       MoveCommand.new(@robot)
     elsif instruction == 'LEFT'
-      TurnLeftCommand.new(@robot)
+      TurnCommand.new(@robot, TurnCommand::LEFT)
     elsif instruction == 'RIGHT'
-      TurnRightCommand.new(@robot)
+      TurnCommand.new(@robot, TurnCommand::RIGHT)
     elsif instruction == 'REPORT'
       ReportCommand.new(@robot, @io)
     end

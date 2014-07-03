@@ -21,11 +21,11 @@ class Robot
   end
 
   def left
-    turn(-1)
+    clockwise_turn(-1)
   end
 
   def right
-    turn(1)
+    clockwise_turn(1)
   end
 
   def location 
@@ -36,13 +36,13 @@ class Robot
     !(@position.nil?)
   end
 
-  private
-
-  def turn(adjustment)
+  def clockwise_turn(steps)
     return unless placed?
     index = FACINGS.index(@facing)
-    @facing = FACINGS.rotate(adjustment)[index]
+    @facing = FACINGS.rotate(steps)[index]
   end
+
+  private
 
   def change_position(position) 
     if @table.within_edges?(position)  
