@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'move_command'
 
 describe MoveCommand do

@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'place_command'
 
 describe PlaceCommand do

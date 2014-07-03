@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'report_command'
 
 describe ReportCommand do
