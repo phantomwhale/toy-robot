@@ -2,6 +2,7 @@ require_relative 'place_command'
 require_relative 'move_command'
 require_relative 'turn_command'
 require_relative 'report_command'
+require_relative 'unknown_command'
 
 class CommandFactory
   def initialize(robot, io = STDOUT)
@@ -21,6 +22,8 @@ class CommandFactory
       TurnCommand.new(@robot, TurnCommand::RIGHT)
     elsif instruction == 'REPORT'
       ReportCommand.new(@robot, @io)
+    else
+      UnknownCommand.new(instruction, @io)
     end
   end
 end

@@ -51,5 +51,14 @@ describe CommandFactory do
         command_factory.create(instruction)
       end
     end
+
+    context 'when processing an unknown instruction' do
+      let(:instruction) { 'UNKNOWN' }
+
+      it 'creates a null command' do
+        expect(UnknownCommand).to receive(:new).with(instruction, io)
+        command_factory.create(instruction)
+      end
+    end
   end
 end

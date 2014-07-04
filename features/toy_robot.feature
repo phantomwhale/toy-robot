@@ -75,3 +75,15 @@ Feature: We can place and move the robot around
     When I successfully run `toy_robot.rb instructions.txt`
     Then the stdout should not contain anything
 
+  Scenario: Illegal input is ignored
+    Given a file named "instructions.txt" with:
+    """
+      PLACE 1,2,NORTH
+      move
+      no such command
+      REPORT
+    """
+    When I successfully run `toy_robot.rb instructions.txt`
+    Then the stdout should contain "1,2,NORTH"
+    And the stdout should contain "Unknown instruction: move"
+    And the stdout should contain "Unknown instruction: no such command"
