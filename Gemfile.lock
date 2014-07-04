@@ -21,6 +21,7 @@ GEM
       multi_json (~> 1.3)
     multi_json (1.10.1)
     multi_test (0.1.1)
+    rake (10.0.4)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -44,5 +45,6 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
+  rake
   rspec
   simplecov
