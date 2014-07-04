@@ -19,7 +19,7 @@ Ensure you have [Git](http://git-scm.com/downloads) and [Ruby 2.1.2](http://www.
 
 To run the simulator, execute:
 
-    ./bin/toy_robot.sh [instructions.txt]
+    ./bin/toy_robot.rb [instructions.txt]
 
 The insturctions can be provided either via an optional file, or fed directly into STDIN if no file is specified.
 
